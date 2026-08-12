@@ -1,0 +1,25 @@
+# ---- MATLAB 临时文件 ----
+*.asv
+*.autosave
+slprj/
+*.slxc
+
+# ---- 算法运行生成的结果数据（可由 main / compare_* 脚本重新生成，不入库）----
+AUV_DATA*.mat
+Symbol.mat
+path1.mat
+path11.mat
+best_cost1.mat
+best_cost11.mat
+energy1.mat
+energy11.mat
+Violation1.mat
+Violation11.mat
+sea_x.mat
+sea_y.mat
+sea_z.mat
+
+# ---- 系统文件 ----
+Thumbs.db
+desktop.ini
+.DS_Store
