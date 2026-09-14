@@ -254,9 +254,15 @@ AUV_CONTROL_POS3=[];
         symbol=0;
         w_max=0.9;
         w_min=0.4;
-        w=w_max;   % 标准 PSO：固定惯性权重
-        c1=1.5;    % 标准 PSO：固定学习因子
-        c2=1.5;
+        w=((w_max-w_min)/2)*cos(pi*(it/MaxIt))+((w_max+w_min)/2);
+        c_a=1;
+        c_b=1.5;
+        c_af=1;
+        c_beta=1.5;
+        
+        c1=c_a*sin(pi/2*((MaxIt/2-it)/(MaxIt/2)))+c_b;
+        
+        c2=c_af*sin(pi/2*((it-(MaxIt/2))/(MaxIt/2)))+c_beta;
         energy_to=zeros(1,nPop);
         
 %{
@@ -279,7 +285,7 @@ AUV_CONTROL_POS3=[];
         
         %对粒子群的所有粒子进行迭代操作
         for i=1:nPop
-            if (1)  % 标准 PSO：全区间统一更新
+            if (1)
                 particle(i).Velocity.x=w*particle(i).Velocity.x...
                     +c1*rand(VarSize).*(particle(i).Best.Position.x-particle(i).Posistion.x)...
                     +c2*rand(VarSize).*(GlobalBest.Position.x-particle(i).Posistion.x);
