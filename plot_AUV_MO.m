@@ -7,7 +7,14 @@ POS_Y=pos_y.AUV_UNDER_POS2;
 pos_z=load('AUV_DATA3.mat');
 POS_Z=pos_z.AUV_UNDER_POS3;
 
-
+pos_p=load('AUV_DATA11.mat');
+POS_P=pos_p.AUV_UNDER_POS11;
+pos_q=load('AUV_DATA22.mat');
+POS_Q=pos_q.AUV_UNDER_POS22;
+pos_r=load('AUV_DATA33.mat');
+POS_R=pos_r.AUV_UNDER_POS33;
+T=88.3106;  %算法运行时间
+T1=89.3869;
 
 
 %计算路径点的长度
