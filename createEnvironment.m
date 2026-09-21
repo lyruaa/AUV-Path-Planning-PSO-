@@ -1,4 +1,12 @@
-﻿%% 三维环境搭建
+﻿function createEnvironment()
+%CREATEEENVIRONMENT 构建三维海洋环境
+%   加载海底地形网格、定义海域边界与起止点，并绘制全部静态障碍物。
+%   环境参数通过全局变量向调用方暴露（x_limit/y_limit/z_limit/x_sea/y_sea/z_sea、
+%   start_point/goal_point、center_circle/radius_circle、size1/origin、tria、ZHU 等）。
+%
+%   用法：
+%       createEnvironment();   % 在 main 中调用
+
 global x_limit;
 global y_limit;
 global z_limit;
@@ -120,3 +128,5 @@ grid on
 view(37.5,30)
 %将长方体信息存储
 obs_34=h;
+
+end
