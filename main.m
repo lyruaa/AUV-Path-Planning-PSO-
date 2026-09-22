@@ -461,6 +461,34 @@ AUV_CONTROL_POS3=[];
    
     end % end for it=1:MaxIt
 
+%% 运行结束：保存结果数据，供对比与可视化脚本复用
+% 说明：这些文件是算法运行的产物，已列入 .gitignore，不入版本控制。
+%       运行本脚本后会在当前目录自动生成；compare_path / comp_cost / comp_energy
+%       / comp_symbol / comp_vio / plot_AUV_MO 直接读取它们。
+%       保存的变量名与各读取脚本中的 load(...,'变量名') 严格一致。
+
+elapsed=toc;   %总运行耗时
+
+save('best_cost1.mat','BestCost');    %收敛曲线数据  -> comp_cost
+save('energy1.mat','energy_opt');     %能耗曲线数据  -> comp_energy
+save('violation1.mat','Violation');   %约束违反次数  -> comp_vio
+save('Symbol.mat','Symbol');          %跳出机制触发数 -> comp_symbol
+save('path1.mat','GlobalBest');       %最优路径       -> compare_path
+
+%车辆运动信息（-> plot_AUV_MO 绘制速度、航向角、俯仰角曲线）
+save('AUV_DATA1.mat','AUV_UNDER_POS1');
+save('AUV_DATA2.mat','AUV_UNDER_POS2');
+save('AUV_DATA3.mat','AUV_UNDER_POS3');
+
+fprintf('\n===== 运行结束 =====\n');
+fprintf('迭代代数      : %d\n', MaxIt);
+fprintf('最优代价值    : %.4f\n', GlobalBest.Cost);
+fprintf('路径是否可行  : %d（1 为无碰撞）\n', GlobalBest.Sol.IsFeasible);
+fprintf('碰撞点数目    : %d\n', GlobalBest.Sol.Violation_num);
+fprintf('耗时          : %.2f s\n', elapsed);
+fprintf('结果已保存至当前目录：best_cost1.mat / energy1.mat / violation1.mat / Symbol.mat / path1.mat / AUV_DATA*.mat\n');
+
+
    
  
  
